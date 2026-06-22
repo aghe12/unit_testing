@@ -4,7 +4,7 @@ import { PaymentsService } from './payments.service';
 
 describe('PaymentsController', () => {
   let controller: PaymentsController;
-  let service:PaymentsService;
+  let service: PaymentsService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -13,7 +13,7 @@ describe('PaymentsController', () => {
     }).compile();
 
     controller = module.get<PaymentsController>(PaymentsController);
-    service=module.get<PaymentsService>(PaymentsService)
+    service = module.get<PaymentsService>(PaymentsService);
   });
 
   it('should be defined', () => {
@@ -21,10 +21,8 @@ describe('PaymentsController', () => {
   });
 
   describe('getPayments', () => {
-
-    // ==========================================================
     // APPROACH 1: NO MOCKING (Testing Controller + Service)
-    // ==========================================================
+
     it('should return real data from the actual service', () => {
       // 1. Arrange: We have to guess the ACTUAL data the real service returns
       const expectedResult = ['payment1', 'payment2', 'payment3'];
@@ -36,10 +34,8 @@ describe('PaymentsController', () => {
       expect(result).toEqual(expectedResult);
     });
 
-
-    // ==========================================================
     // APPROACH 2: MOCKING (Testing Controller in Isolation)
-    // ==========================================================
+
     it('should return fake data using a mocked service', () => {
       // 1. Arrange: Create totally different fake data for the test
       const expectedResult = ['mocked_payment_1', 'mocked_payment_2'];
@@ -53,8 +49,5 @@ describe('PaymentsController', () => {
       // 4. Assert: Check if the controller successfully returned our fake array
       expect(result).toEqual(expectedResult);
     });
-
   });
-
-
 });
